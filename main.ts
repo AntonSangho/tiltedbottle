@@ -8,11 +8,13 @@ basic.forever(function () {
     tilt = input.acceleration(Dimension.X)
     // 좌우 기울기에 따라 LED 제어
     if (tilt < -200) {
+        music.play(music.createSoundExpression(WaveShape.Triangle, 4558, 522, 255, 0, 500, SoundExpressionEffect.None, InterpolationCurve.Curve), music.PlaybackMode.UntilDone)
         // 왼쪽으로 기울임
         pins.digitalWritePin(DigitalPin.P1, 1)
         // P1 LED 켜기
         pins.digitalWritePin(DigitalPin.P2, 0)
     } else if (tilt > 200) {
+        music.play(music.createSoundExpression(WaveShape.Triangle, 628, 5000, 255, 0, 500, SoundExpressionEffect.None, InterpolationCurve.Curve), music.PlaybackMode.UntilDone)
         // P2 LED 끄기
         // 오른쪽으로 기울임
         pins.digitalWritePin(DigitalPin.P1, 0)
@@ -27,19 +29,11 @@ basic.forever(function () {
     }
     if (input.buttonIsPressed(Button.A)) {
         pins.digitalWritePin(DigitalPin.P1, 1)
-    } else {
-        // P2 LED 켜기
-        // 평평한 상태
-        // 기울기가 충분하지 않으면 두 LED 모두 끄기
-        pins.digitalWritePin(DigitalPin.P1, 0)
+        music.play(music.createSoundExpression(WaveShape.Triangle, 4558, 522, 255, 0, 500, SoundExpressionEffect.None, InterpolationCurve.Curve), music.PlaybackMode.UntilDone)
     }
     if (input.buttonIsPressed(Button.B)) {
         pins.digitalWritePin(DigitalPin.P2, 1)
-    } else {
-        // P2 LED 켜기
-        // 평평한 상태
-        // 기울기가 충분하지 않으면 두 LED 모두 끄기
-        pins.digitalWritePin(DigitalPin.P2, 0)
+        music.play(music.createSoundExpression(WaveShape.Triangle, 628, 5000, 255, 0, 500, SoundExpressionEffect.None, InterpolationCurve.Curve), music.PlaybackMode.UntilDone)
     }
     basic.pause(100)
 })
